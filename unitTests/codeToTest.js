@@ -1,3 +1,5 @@
+const test=require('./depend');
+
 function Add(x,y) {
     return x+y;
 }
@@ -14,10 +16,14 @@ async function addSlowly(x,y) {
 function addCallback(x,y, callback) {
     callback(x+y);
 }
-
+function dependCheck(){
+    console.log(test.getString());
+    return test.getString();
+}
 
 module.exports = {
     Add: Add,
     addSlowly: addSlowly,
-    addCallback: addCallback
+    addCallback: addCallback,
+    dependCheck: dependCheck
 }

@@ -1,6 +1,8 @@
 // test/hello-world.js
 const tap = require('tap');
 const calculator = require('../codeToTest.js');
+const sinon = require('sinon');
+const proxyquire = require('proxyquire').noCallThru();
 const assert = require('assert');
 
 
@@ -29,5 +31,19 @@ tap.test('Slow add test promise', t => {
         t.end();
     });
 });
+
+tap.test('depend Check', t=> {
+    const dataStub = {};
+    dataStub.getString = sinon.stub();
+    dataStub.getString.returns('testtest');
+
+    const testCalc = proxyquire('../codeToTest.js',{
+        './depend': dataStub
+    });
+
+
+    t.equal(testCalc.dependCheck(), 'testtest','test depend');
+    t.end();
+})
 
 
