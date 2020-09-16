@@ -1,0 +1,12 @@
+// generates a isolate file
+node --prof index.js
+
+reads it so you can see which bits use the processor
+node --prof-process .\isolate-0000028C26AE4570-8480-v8.log
+
+Flame graph
+use 0x
+
+npm install -g 0x
+0x -o index.js
+
